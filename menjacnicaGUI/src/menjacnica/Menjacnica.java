@@ -39,5 +39,18 @@ public class Menjacnica implements MenjacnicaInterfejs{
 	}
 
 	
+
+	public void setListaKurseva(List<Kurs> listaKurseva) {
+		this.listaKurseva = listaKurseva;
+	}
+
+	@Override
+	public List<Kurs> getKursevi() {
+		if(listaKurseva == null)
+			listaKurseva = new LinkedList<>();
+		return listaKurseva;
+	}
+
+	
 	
 }

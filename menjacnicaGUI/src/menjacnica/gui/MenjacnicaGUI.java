@@ -48,22 +48,18 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton btnDodajKurs;
 	private JButton btnIzbriiKurs;
 	private JPanel pnlTable;
-	private JButton btnIzvriZamenu;
+	private JButton btnIzvriZamenu;	
 	private JPanel pnlStatus;
-	private TextArea textArea;
+	private TextArea txtStatus;
+	private JTable table;
+	private JTable tblMenjacnica;
 
 	/**
 	 * Create the frame.
 	 */
 	public MenjacnicaGUI() {
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				KontrolerGUI.ugasiAplikaciju();
-			}
-		});
 		setTitle("Menjacnica");
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 514, 345);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
@@ -152,9 +148,13 @@ public class MenjacnicaGUI extends JFrame {
 	private JPanel getPnlTable() {
 		if (pnlTable == null) {
 			pnlTable = new JPanel();
+			pnlTable.setLayout(new BorderLayout(0, 0));
+			pnlTable.add(getTblMenjacnica(), BorderLayout.CENTER);
 		}
 		return pnlTable;
 	}
+	
+
 	private JButton getBtnIzvriZamenu() {
 		if (btnIzvriZamenu == null) {
 			btnIzvriZamenu = new JButton("Izvr\u0161i zamenu");
@@ -173,10 +173,25 @@ public class MenjacnicaGUI extends JFrame {
 		return pnlStatus;
 	}
 	private TextArea getTextArea_1() {
-		if (textArea == null) {
-			textArea = new TextArea();
-			textArea.setPreferredSize(new Dimension(0, 70));
+		if (txtStatus == null) {
+			txtStatus = new TextArea();
+			txtStatus.setPreferredSize(new Dimension(0, 70));
 		}
-		return textArea;
+		return txtStatus;
+	}
+	public TextArea getTxtStatus() {
+		return getTextArea_1();
+	}
+	
+		
+	private JTable getTblMenjacnica() {
+		if(table == null)
+			table = new JTable();
+		MenjacnicaTableModel m = new MenjacnicaTableModel(
+				KontrolerGUI.vratiSveKurseve());
+		table.setModel(m);
+		return table;
 	}
 }
+	
+

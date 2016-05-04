@@ -1,6 +1,7 @@
 package menjacnica.gui;
 
 import java.awt.EventQueue;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -38,16 +39,20 @@ public class KontrolerGUI {
 		}
 	}
 	
-	public void dodajKurs(Kurs noviKurs){
+	public static void dodajKurs(Kurs noviKurs){
 		menjacnica.dodajKurs(noviKurs);
 	}
 	
-	public void obrisiKurs(Kurs kursZaBrisanje){
+	public static void obrisiKurs(Kurs kursZaBrisanje){
 		menjacnica.obrisiKurs(kursZaBrisanje);
 	}
 	
-	public void izmeniKurs(Kurs stariKurs,Kurs noviKurs){
+	public static void izmeniKurs(Kurs stariKurs,Kurs noviKurs){
 		menjacnica.izmeniPostojeciKurs(stariKurs, noviKurs);
+	}
+	
+	public static List<Kurs> vratiSveKurseve(){
+		return menjacnica.getKursevi();
 	}
 	
 }

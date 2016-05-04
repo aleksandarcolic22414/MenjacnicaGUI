@@ -19,6 +19,7 @@ public class MenjacnicaTableModel extends AbstractTableModel{
 		else this.kursevi = kursevi;
 	}
 	
+	public MenjacnicaTableModel() {}
 	
 	@Override
 	public int getRowCount() {
