@@ -9,7 +9,7 @@ import menjacnica.Kurs;
 @SuppressWarnings("serial")
 public class MenjacnicaTableModel extends AbstractTableModel{
 
-	private final String[] kolone = { "Sifra", "Skraceni naziv" , "Prodajni" ,
+	private final String[] kolone = { "Šifra", "Skraceni naziv" , "Prodajni" ,
 			"Srednji" ,"Kupovni" ,"Naziv" };
 	private List<Kurs> kursevi;
 	
@@ -72,5 +72,11 @@ public class MenjacnicaTableModel extends AbstractTableModel{
 	public String[] getKolone() {
 		return kolone;
 	}
+	@Override
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		return false;
+	}
+	
+	
 	
 }

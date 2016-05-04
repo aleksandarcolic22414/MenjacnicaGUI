@@ -65,6 +65,7 @@ public class KontrolerGUI {
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();
 				menjacnica.sacuvajUFajl(file.getAbsolutePath());
+				
 			}
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), e1.getMessage(), "Greska",
