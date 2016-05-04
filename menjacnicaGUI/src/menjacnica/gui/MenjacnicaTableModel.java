@@ -19,7 +19,9 @@ public class MenjacnicaTableModel extends AbstractTableModel{
 		else this.kursevi = kursevi;
 	}
 	
-	public MenjacnicaTableModel() {}
+	public MenjacnicaTableModel() {
+		this.kursevi = new LinkedList<>();
+	}
 	
 	@Override
 	public int getRowCount() {
@@ -28,29 +30,29 @@ public class MenjacnicaTableModel extends AbstractTableModel{
 
 	@Override
 	public int getColumnCount() {
-		return this.kolone.length;
+		return kolone.length;
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		Kurs k = kursevi.get(rowIndex);
 		switch(columnIndex){
-		case 1:{
+		case 0:{
 			return k.getSifra();
 		}
-		case 2:{
+		case 1:{
 			return k.getSkraceniNaziv();
 			}
-		case 3:{
+		case 2:{
 			return k.getProdajni();
 		}
-		case 4:{
+		case 3:{
 			return k.getSrednji();
 		} 
-		case 5:{
+		case 4:{
 			return k.getKupovni();
 		}
-		case 6:{
+		case 5:{
 			return k.getNaziv();
 		}default:
 			return "NN";
@@ -65,6 +67,10 @@ public class MenjacnicaTableModel extends AbstractTableModel{
 	public void ucitajKurseve(List<Kurs> kursevi){
 		this.kursevi = kursevi;
 		fireTableDataChanged();
+	}
+
+	public String[] getKolone() {
+		return kolone;
 	}
 	
 }

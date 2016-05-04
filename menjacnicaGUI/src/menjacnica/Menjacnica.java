@@ -1,8 +1,13 @@
 package menjacnica;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.List;
-
 import menjacnica.interfejs.MenjacnicaInterfejs;
 
 public class Menjacnica implements MenjacnicaInterfejs{
@@ -49,6 +54,44 @@ public class Menjacnica implements MenjacnicaInterfejs{
 		if(listaKurseva == null)
 			listaKurseva = new LinkedList<>();
 		return listaKurseva;
+	}
+
+	@Override
+	public void sacuvajUFajl(String putanja) {
+		try {
+			ObjectOutputStream out = new ObjectOutputStream(
+					new BufferedOutputStream(
+							new FileOutputStream(putanja)));
+
+			out.writeObject(listaKurseva);
+
+			out.close();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+
+	@Override
+	public void ucitajIzFajla(String putanja) {
+		
+		try {
+			ObjectInputStream in = new ObjectInputStream(
+					new BufferedInputStream(
+							new FileInputStream(putanja)));
+
+			// Ovo je da bi se lista knjiga zaista prebrisala i napunila ponovo
+			// ako se stavi samo kao u sledecem redu, onda ne radi
+			// knjige = (LinkedList<Knjiga>)(in.readObject());
+			LinkedList<Kurs> kursevi = (LinkedList<Kurs>) (in.readObject());
+			listaKurseva.clear();
+			listaKurseva.addAll(kursevi);
+
+			in.close();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		
 	}
 
 	

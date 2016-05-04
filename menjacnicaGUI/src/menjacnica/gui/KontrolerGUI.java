@@ -1,8 +1,10 @@
 package menjacnica.gui;
 
 import java.awt.EventQueue;
+import java.io.File;
 import java.util.List;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import menjacnica.*;
@@ -53,6 +55,38 @@ public class KontrolerGUI {
 	
 	public static List<Kurs> vratiSveKurseve(){
 		return menjacnica.getKursevi();
+	}
+
+	public static void sacuvajUFajl() {
+		try {
+			JFileChooser fc = new JFileChooser();
+			int returnVal = fc.showSaveDialog(glavniProzor.getContentPane());
+
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+				menjacnica.sacuvajUFajl(file.getAbsolutePath());
+			}
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), e1.getMessage(), "Greska",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	
+	public static void ucitajIzFajla() {
+		try {
+			JFileChooser fc = new JFileChooser();
+			int returnVal = fc.showOpenDialog(glavniProzor.getContentPane());
+
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+				menjacnica.ucitajIzFajla(file.getAbsolutePath());
+				glavniProzor.osveziTabelu();
+			}
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), e1.getMessage(), "Greska",
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 }

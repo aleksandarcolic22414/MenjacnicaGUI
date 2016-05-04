@@ -11,7 +11,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import menjacnica.Menjacnica;
+
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -33,6 +38,11 @@ import java.awt.ScrollPane;
 import java.awt.TextArea;
 import java.awt.Scrollbar;
 import java.awt.Panel;
+import javax.swing.ImageIcon;
+import java.awt.Toolkit;
+import javax.swing.KeyStroke;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
 
 public class MenjacnicaGUI extends JFrame {
 
@@ -53,11 +63,14 @@ public class MenjacnicaGUI extends JFrame {
 	private TextArea txtStatus;
 	private JTable table;
 	private JTable tblMenjacnica;
-
+	private String[] kolone = { "Sifra", "Skraceni naziv" , "Prodajni" ,
+			"Srednji" ,"Kupovni" ,"Naziv" };
+	
 	/**
 	 * Create the frame.
 	 */
 	public MenjacnicaGUI() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MenjacnicaGUI.class.getResource("/icons/Water lilies.jpg")));
 		setTitle("Menjacnica");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 514, 345);
@@ -98,18 +111,28 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmOpen() {
 		if (mntmOpen == null) {
 			mntmOpen = new JMenuItem("Open");
+			mntmOpen.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			mntmOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
+			mntmOpen.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/javax/swing/plaf/metal/icons/ocean/directory.gif")));
 		}
 		return mntmOpen;
 	}
 	private JMenuItem getMntmSave() {
 		if (mntmSave == null) {
 			mntmSave = new JMenuItem("Save");
+			mntmSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
+			mntmSave.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/javax/swing/plaf/metal/icons/ocean/floppy.gif")));
 		}
 		return mntmSave;
 	}
 	private JMenuItem getMntmExit() {
 		if (mntmExit == null) {
 			mntmExit = new JMenuItem("Exit");
+			mntmExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK));
 		}
 		return mntmExit;
 	}
@@ -185,13 +208,18 @@ public class MenjacnicaGUI extends JFrame {
 	
 		
 	private JTable getTblMenjacnica() {
-		if(table == null)
-			table = new JTable();
-		MenjacnicaTableModel m = new MenjacnicaTableModel(
-				KontrolerGUI.vratiSveKurseve());
-		table.setModel(m);
+		if(table == null){
+			table = new JTable(new MenjacnicaTableModel(null));
+		}
 		return table;
 	}
+
+	public void osveziTabelu() {
+		MenjacnicaTableModel model = (MenjacnicaTableModel) table.getModel();
+		model.ucitajKurseve(KontrolerGUI.vratiSveKurseve());
+	}
+
+	
 }
 	
 
