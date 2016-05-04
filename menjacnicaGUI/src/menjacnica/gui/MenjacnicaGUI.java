@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -64,9 +65,6 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton btnIzvriZamenu;	
 	private JPanel pnlStatus;
 	private TextArea txtStatus;
-	private JTable tblMenjacnica;
-	private String[] kolone = { "Sifra", "Skraceni naziv" , "Prodajni" ,
-			"Srednji" ,"Kupovni" ,"Naziv" };
 	private JScrollPane scrollPaneTable;
 	private JTable table;
 	private JPopupMenu popupMenu;
@@ -78,9 +76,15 @@ public class MenjacnicaGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MenjacnicaGUI() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				KontrolerGUI.ugasiAplikaciju();
+			}
+		});
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenjacnicaGUI.class.getResource("/icons/Water lilies.jpg")));
 		setTitle("Menjacnica");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 514, 345);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
@@ -157,6 +161,12 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmAbout() {
 		if (mntmAbout == null) {
 			mntmAbout = new JMenuItem("About");
+			mntmAbout.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JOptionPane.showMessageDialog(null, "Autor: Aleksandar Čolić\n"
+							+ "Broj indexa: 224/14\n" + "Grupa: B5");
+				}
+			});
 		}
 		return mntmAbout;
 	}
@@ -241,6 +251,8 @@ public class MenjacnicaGUI extends JFrame {
 	private JTable getTable() {
 		if (table == null) {
 			table = new JTable(new MenjacnicaTableModel(null));
+			table.setRowSelectionAllowed(false);
+			table.setColumnSelectionAllowed(false);
 		}
 		return table;
 	}
@@ -288,6 +300,15 @@ public class MenjacnicaGUI extends JFrame {
 		}
 		return mntmIzvrsiZamenu;
 	}
+	
+	public void postaviTekstStatusGUI(String tekst){
+		getTxtStatus().setText(tekst);
+	}
+	
+	public void dodajTekstNaStatus(String tekst){
+		getTxtStatus().append(tekst);
+	}
+	
 }
 	
 

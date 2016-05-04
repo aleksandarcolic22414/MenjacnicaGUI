@@ -65,6 +65,7 @@ public class KontrolerGUI {
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();
 				menjacnica.sacuvajUFajl(file.getAbsolutePath());
+				KontrolerGUI.dodajTekstNaStatus("Sacuvan fajl: " + file.getAbsolutePath());
 				
 			}
 		} catch (Exception e1) {
@@ -82,12 +83,21 @@ public class KontrolerGUI {
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();
 				menjacnica.ucitajIzFajla(file.getAbsolutePath());
+				KontrolerGUI.dodajTekstNaStatus("Ucitan fajl: " + file.getAbsolutePath());
 				glavniProzor.osveziTabelu();
 			}
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), e1.getMessage(), "Greska",
 					JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	
+	public static void postaviTekstStatusa(String tekst){
+		glavniProzor.postaviTekstStatusGUI(tekst);
+	}
+	
+	public static void dodajTekstNaStatus(String tekst){
+		glavniProzor.dodajTekstNaStatus(tekst);
 	}
 	
 }

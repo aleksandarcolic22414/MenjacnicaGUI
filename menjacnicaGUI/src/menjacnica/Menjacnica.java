@@ -80,9 +80,7 @@ public class Menjacnica implements MenjacnicaInterfejs{
 					new BufferedInputStream(
 							new FileInputStream(putanja)));
 
-			// Ovo je da bi se lista knjiga zaista prebrisala i napunila ponovo
-			// ako se stavi samo kao u sledecem redu, onda ne radi
-			// knjige = (LinkedList<Knjiga>)(in.readObject());
+			@SuppressWarnings("unchecked")
 			LinkedList<Kurs> kursevi = (LinkedList<Kurs>) (in.readObject());
 			listaKurseva.clear();
 			listaKurseva.addAll(kursevi);
