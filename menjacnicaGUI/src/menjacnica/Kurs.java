@@ -21,6 +21,15 @@ public class Kurs {
 		this.naziv = naziv;
 	}
 	
+	public void setKurs(Kurs noviKurs){
+		this.sifra = noviKurs.getSifra();
+		this.skraceniNaziv = noviKurs.getSkraceniNaziv();
+		this.prodajni = noviKurs.getProdajni();
+		this.srednji = noviKurs.getSrednji();
+		this.kupovni = noviKurs.getKupovni();
+		this.naziv = noviKurs.getNaziv();
+	}
+	
 	public String getSifra() {
 		return sifra;
 	}
