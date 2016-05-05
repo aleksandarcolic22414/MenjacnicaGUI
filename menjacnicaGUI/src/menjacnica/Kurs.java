@@ -1,6 +1,8 @@
 package menjacnica;
 
-public class Kurs {
+import java.io.Serializable;
+
+public class Kurs implements Serializable{
 
 	private String sifra;
 	private String skraceniNaziv;
