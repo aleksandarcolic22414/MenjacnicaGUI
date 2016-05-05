@@ -17,6 +17,7 @@ public class KontrolerGUI {
 	 */
 	private static MenjacnicaGUI glavniProzor;
 	private static MenjacnicaInterfejs menjacnica;
+	private static DodajKursGUI dodajKursProzor;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -98,6 +99,25 @@ public class KontrolerGUI {
 	
 	public static void dodajTekstNaStatus(String tekst){
 		glavniProzor.dodajTekstNaStatus(tekst);
+	}
+
+	public static void dodajKursUListuKurseva(Kurs kurs) {
+		menjacnica.dodajKurs(kurs);
+		glavniProzor.osveziTabelu();
+		dodajTekstNaStatus("Dodaj je kurs: " + kurs);
+	}
+	
+	public static void napraviProzorDodajKurs(){
+		EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						dodajKursProzor = new DodajKursGUI();
+						dodajKursProzor.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
 	}
 	
 }

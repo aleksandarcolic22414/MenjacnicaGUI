@@ -1,4 +1,4 @@
-package menjacnica.gui;
+package menjacnica.gui.model;
 
 import java.util.LinkedList;
 import java.util.List;

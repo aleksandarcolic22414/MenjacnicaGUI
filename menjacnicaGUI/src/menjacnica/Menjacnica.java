@@ -16,7 +16,7 @@ public class Menjacnica implements MenjacnicaInterfejs{
 	
 	@Override
 	public void dodajKurs(Kurs noviKurs) {
-		if(noviKurs != null || listaKurseva.contains(noviKurs))
+		if(noviKurs != null && !listaKurseva.contains(noviKurs))
 			listaKurseva.add(noviKurs);
 		else throw new RuntimeException("Greska pri unosu kursa");
 	}

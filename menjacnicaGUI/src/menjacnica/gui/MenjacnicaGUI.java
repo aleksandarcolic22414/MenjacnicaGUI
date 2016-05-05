@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import menjacnica.Menjacnica;
+import menjacnica.gui.model.MenjacnicaTableModel;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -185,6 +186,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnDodajKurs() {
 		if (btnDodajKurs == null) {
 			btnDodajKurs = new JButton("Dodaj kurs");
+			btnDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					KontrolerGUI.napraviProzorDodajKurs();
+				}
+			});
 			btnDodajKurs.setPreferredSize(new Dimension(115, 23));
 		}
 		return btnDodajKurs;
@@ -285,6 +291,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmDodajKurs() {
 		if (mntmDodajKurs == null) {
 			mntmDodajKurs = new JMenuItem("Dodaj kurs");
+			mntmDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					KontrolerGUI.napraviProzorDodajKurs();
+				}
+			});
 		}
 		return mntmDodajKurs;
 	}
