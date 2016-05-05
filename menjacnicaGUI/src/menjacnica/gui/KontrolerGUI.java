@@ -16,8 +16,9 @@ public class KontrolerGUI {
 	 ** Pokretanje aplikacije
 	 */
 	private static MenjacnicaGUI glavniProzor;
-	private static MenjacnicaInterfejs menjacnica;
 	private static DodajKursGUI dodajKursProzor;
+	private static IzvrsiZamenuGUI zamenaProzor;
+	private static MenjacnicaInterfejs menjacnica;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -120,7 +121,7 @@ public class KontrolerGUI {
 			});
 	}
 
-	public static void izbrisiKurs(Kurs kurs) {
+	public static void izbrisiKurs(Kurs kurs,int red) {
 		int val = JOptionPane.showConfirmDialog(glavniProzor, "Da li ste sigurni da "
 				+ "zelite da izbrisete odabrani kurs?","Brisanje kursa",
 				JOptionPane.YES_NO_OPTION);
@@ -133,7 +134,21 @@ public class KontrolerGUI {
 			}
 			glavniProzor.osveziTabelu();
 			JOptionPane.showMessageDialog(null, "Uspesno ste obrisali kurs!");
-		}else return;
+			KontrolerGUI.dodajTekstNaStatus("\nIzbrisan je red sa indexom " + red);
+		} else return;
 	}
 	
-}
+	public static void pokreniIzvrsiZamenuProzor(){
+		EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						zamenaProzor = new IzvrsiZamenuGUI();
+						zamenaProzor.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		}
+	}
+

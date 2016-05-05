@@ -212,8 +212,7 @@ public class MenjacnicaGUI extends JFrame {
 						k.setSrednji((double)table.getValueAt(red, 3));
 						k.setKupovni((double)table.getValueAt(red, 4));
 						k.setNaziv((String)table.getValueAt(red, 5));
-						KontrolerGUI.izbrisiKurs(k);
-						KontrolerGUI.dodajTekstNaStatus("Izbrisan je red sa indexom " + red);
+						KontrolerGUI.izbrisiKurs(k,red);
 					}
 				}
 			});
@@ -234,6 +233,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnIzvriZamenu() {
 		if (btnIzvriZamenu == null) {
 			btnIzvriZamenu = new JButton("Izvr\u0161i zamenu");
+			btnIzvriZamenu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					KontrolerGUI.pokreniIzvrsiZamenuProzor();
+				}
+			});
 			btnIzvriZamenu.setPreferredSize(new Dimension(115, 23));
 		}
 		return btnIzvriZamenu;
@@ -333,8 +337,7 @@ public class MenjacnicaGUI extends JFrame {
 						k.setSrednji((double)table.getValueAt(red, 3));
 						k.setKupovni((double)table.getValueAt(red, 4));
 						k.setNaziv((String)table.getValueAt(red, 5));
-						KontrolerGUI.izbrisiKurs(k);
-						KontrolerGUI.dodajTekstNaStatus("Izbrisan je red sa indexom " + red);
+						KontrolerGUI.izbrisiKurs(k,red);
 					}
 				}
 			});
@@ -344,6 +347,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmIzvrsiZamenu() {
 		if (mntmIzvrsiZamenu == null) {
 			mntmIzvrsiZamenu = new JMenuItem("Izvr\u0161i zamenu");
+			mntmIzvrsiZamenu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					KontrolerGUI.pokreniIzvrsiZamenuProzor();
+				}
+			});
 		}
 		return mntmIzvrsiZamenu;
 	}
