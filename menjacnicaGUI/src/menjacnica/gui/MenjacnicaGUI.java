@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import menjacnica.Kurs;
 import menjacnica.Menjacnica;
 import menjacnica.gui.model.MenjacnicaTableModel;
 
@@ -198,6 +199,24 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnIzbriiKurs() {
 		if (btnIzbriiKurs == null) {
 			btnIzbriiKurs = new JButton("Izbri\u0161i kurs");
+			btnIzbriiKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int red = table.getSelectedRow();
+					if(red == -1)
+						JOptionPane.showMessageDialog(null, "Morate oznaciti red za brisanje!");
+					else {
+						Kurs k = new Kurs();
+						k.setSifra((String)table.getValueAt(red, 0));
+						k.setSkraceniNaziv((String)table.getValueAt(red, 1));
+						k.setProdajni((double)table.getValueAt(red, 2));
+						k.setSrednji((double)table.getValueAt(red, 3));
+						k.setKupovni((double)table.getValueAt(red, 4));
+						k.setNaziv((String)table.getValueAt(red, 5));
+						KontrolerGUI.izbrisiKurs(k);
+						KontrolerGUI.dodajTekstNaStatus("Izbrisan je red sa indexom " + red);
+					}
+				}
+			});
 			btnIzbriiKurs.setPreferredSize(new Dimension(115, 23));
 		}
 		return btnIzbriiKurs;
@@ -257,7 +276,6 @@ public class MenjacnicaGUI extends JFrame {
 	private JTable getTable() {
 		if (table == null) {
 			table = new JTable(new MenjacnicaTableModel(null));
-			table.setRowSelectionAllowed(false);
 			table.setColumnSelectionAllowed(false);
 		}
 		return table;
@@ -302,6 +320,24 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmIzbriiKurs() {
 		if (mntmIzbriiKurs == null) {
 			mntmIzbriiKurs = new JMenuItem("Izbri\u0161i kurs");
+			mntmIzbriiKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int red = table.getSelectedRow();
+					if(red == -1)
+						JOptionPane.showMessageDialog(null, "Morate oznaciti red za brisanje!");
+					else {
+						Kurs k = new Kurs();
+						k.setSifra((String)table.getValueAt(red, 0));
+						k.setSkraceniNaziv((String)table.getValueAt(red, 1));
+						k.setProdajni((double)table.getValueAt(red, 2));
+						k.setSrednji((double)table.getValueAt(red, 3));
+						k.setKupovni((double)table.getValueAt(red, 4));
+						k.setNaziv((String)table.getValueAt(red, 5));
+						KontrolerGUI.izbrisiKurs(k);
+						KontrolerGUI.dodajTekstNaStatus("Izbrisan je red sa indexom " + red);
+					}
+				}
+			});
 		}
 		return mntmIzbriiKurs;
 	}

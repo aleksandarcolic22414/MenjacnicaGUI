@@ -69,9 +69,9 @@ public class Kurs {
 
 	@Override
 	public String toString() {
-		return "Naziv: " + naziv + "skraceni naziv: " + skraceniNaziv + ""
-				+ "Sifra: " + sifra + " prodajni: " + prodajni + ", srednji: "
-				+ srednji + ", kupovni: " + kupovni;
+		return "Naziv: " + naziv + " ,skraceni naziv: " + skraceniNaziv
+				+ " ,sifra: " + sifra + " ,prodajni: " + prodajni + ", srednji: "
+				+ srednji + ", kupovni: " + kupovni + "\n";
 	}
 
 	@Override

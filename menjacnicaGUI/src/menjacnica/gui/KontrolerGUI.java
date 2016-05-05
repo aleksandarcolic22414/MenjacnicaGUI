@@ -119,5 +119,21 @@ public class KontrolerGUI {
 				}
 			});
 	}
+
+	public static void izbrisiKurs(Kurs kurs) {
+		int val = JOptionPane.showConfirmDialog(glavniProzor, "Da li ste sigurni da "
+				+ "zelite da izbrisete odabrani kurs?","Brisanje kursa",
+				JOptionPane.YES_NO_OPTION);
+		if(val == JOptionPane.YES_OPTION){
+			try {
+			menjacnica.obrisiKurs(kurs);
+			}catch (RuntimeException e1){
+				JOptionPane.showMessageDialog(glavniProzor, "Greska pri brisanju kursa",
+						"Greska!",JOptionPane.ERROR_MESSAGE);
+			}
+			glavniProzor.osveziTabelu();
+			JOptionPane.showMessageDialog(null, "Uspesno ste obrisali kurs!");
+		}else return;
+	}
 	
 }
